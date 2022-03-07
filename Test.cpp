@@ -91,7 +91,7 @@ TEST_CASE("Bad input") {
 	CHECK_THROWS(mat(10,10,'@','^')); // When both are even.
 	CHECK_THROWS(mat(-10,-10,'@','^')); // When both are negative and even.
 	CHECK_THROWS(mat(10,10,'@','@')); // When both are even and same sign.
-	CHECK_THROWS(mat(9,3,'@','\n')); // When the char is not in the right range.
+	CHECK_THROWS(mat(9,3,'@','\n')); // When the char is not in the right range. 
 
 
     /* Add more test here */
