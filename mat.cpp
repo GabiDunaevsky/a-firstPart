@@ -3,33 +3,38 @@
 #include <stdexcept>
 #include <iostream>
 #include <array>
+#include <vector>
+#include <cmath>
+#include <algorithm>
 #include "mat.hpp"
+
 
 using namespace std;
 using namespace ariel;
 
 bool checkInputFunc(int columns , int rows,char a , char b){
-    if(rows <= 0 || columns <= 0 ) return false;
-    if(rows % 2 == 0 || columns % 2 == 0 ) return false;
-    if(a >= 127 || a < 32) return false;
-    if(b >= 127 || b < 32) return false;
+    if(rows <= 0 || columns <= 0 ){ return false;}
+    if(rows % 2 == 0 || columns % 2 == 0 ){ return false;}
+    if(a >= hLimit || a < bLimit){ return false;}
+    if(b >= hLimit || b < bLimit){ return false;}
     return true;
 }
 
 namespace ariel{
 
-    char** fillingCarpet(int columns , int rows , char a , char b){
+     vector<vector<char>> fillingCarpet(int columns , int rows , char a , char b){
         int columnFromEnd = columns - 1;
         int columnFromBeg = 0;
         int rowFromEnd = rows - 1;
         int rowFromBeg = 0;
 
-        char** matrix;
-        matrix = new char*[rows];
-        for (int i = 0; i < rows; i++)
-        {
-            matrix[i] = new char[columns];
-        }
+        // char** matrix;
+        // matrix = new char*[rows];
+        // for (int i = 0; i < rows; i++)
+        // {
+        //     matrix[i] = new char[columns];
+        // }
+        vector<vector<char>> matrix(rows, vector<char> (columns, 0));
         // initMat(matrix , rows,columns);
         while(columnFromEnd >= columnFromBeg && rowFromEnd >= rowFromBeg){
                for(int h = columnFromBeg; h <= columnFromEnd ;h++){
@@ -69,12 +74,13 @@ namespace ariel{
 
     // }
         
-    string mat(int columns , int rows , char a , char b){
-        if(!(checkInputFunc(columns , rows , a, b))){
+    string mat(int columns , int rows , char c , char d){
+        if(!(checkInputFunc(columns , rows , c, d))){
             throw invalid_argument("Mat size is always odd");
         }
-        char** carpetMat = fillingCarpet(columns , rows ,a,b);
-        string carpet = "";
+        vector<vector<char>> carpetMat;
+        carpetMat = fillingCarpet(columns , rows ,c,d);
+        string carpet ;
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
