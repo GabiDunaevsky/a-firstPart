@@ -2,10 +2,7 @@
 #include <exception>
 #include <stdexcept>
 #include <iostream>
-#include <array>
 #include <vector>
-#include <cmath>
-#include <algorithm>
 #include "mat.hpp"
 
 
@@ -15,8 +12,8 @@ using namespace ariel;
 bool checkInputFunc(int columns , int rows,char a , char b){
     if(rows <= 0 || columns <= 0 ){ return false;}
     if(rows % 2 == 0 || columns % 2 == 0 ){ return false;}
-    if(a >= hLimit || a < bLimit){ return false;}
-    if(b >= hLimit || b < bLimit){ return false;}
+    // if(a >= hLimit || a < bLimit){ return false;} // Depends on the limit(check for part b)
+    // if(b >= hLimit || b < bLimit){ return false;} // Depends on the limit(check for part b)
     return true;
 }
 
@@ -28,14 +25,8 @@ namespace ariel{
         int rowFromEnd = rows - 1;
         int rowFromBeg = 0;
 
-        // char** matrix;
-        // matrix = new char*[rows];
-        // for (int i = 0; i < rows; i++)
-        // {
-        //     matrix[i] = new char[columns];
-        // }
+       
         vector<vector<char>> matrix(rows, vector<char> (columns, 0));
-        // initMat(matrix , rows,columns);
         while(columnFromEnd >= columnFromBeg && rowFromEnd >= rowFromBeg){
                for(int h = columnFromBeg; h <= columnFromEnd ;h++){
                    if (columnFromEnd % 2 == 0 && columnFromBeg % 2 == 0) // Even bigger than 0.
@@ -65,14 +56,6 @@ namespace ariel{
         }
         return matrix;
     }
-    // void initMat (char** matrix , int rows , int columns){
-    //     matrix = new char*[rows];
-    //     for (int i = 0; i < rows; i++)
-    //     {
-    //         matrix[i] = new char[columns];
-    //     }
-
-    // }
         
     string mat(int columns , int rows , char c , char d){
         if(!(checkInputFunc(columns , rows , c, d))){
@@ -105,7 +88,7 @@ namespace ariel{
 //     cout << mat(1,1,'%','$') << endl;
 //     cout << mat(9,3,'@','@') << endl;
 //     // cout << mat(9,3,'@','\n') << endl;
-//     cout << mat(9,3,'@',2) << endl;
+//     // cout << mat(9,3,'@',2) << endl;
 //     try
 //     {
 //         cout << mat(35,-3,'@','-') << endl;

@@ -3,8 +3,8 @@
 using namespace std;
 
 
-const short bLimit = 32;
-const short hLimit = 127; 
+// const short bLimit = 32; // Depends on the limit(check for part b)
+// const short hLimit = 127; // Depends on the limit(check for part b)
 
 namespace ariel{
     string mat(int columns, int rows , char c , char d);
